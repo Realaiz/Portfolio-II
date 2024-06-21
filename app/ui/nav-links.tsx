@@ -10,7 +10,7 @@ const links = [
 
 export default function NavLinks() {
   return (
-    <div>
+    <div className="flex space-x-4">
       {links.map((link) => {
         return (
           <Link key={link.name} href={link.href}>
