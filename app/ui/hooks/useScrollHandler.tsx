@@ -2,22 +2,19 @@
 
 import { useState, useEffect } from "react";
 
-export default function useScrollHandler(scrollThreshold = 50) {
-  const [scrolled, setScrolled] = useState(false);
+export default function useScrollHandler() {
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > scrollThreshold;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrollPosition(window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [scrollThreshold, scrolled]); //dependancy telling it when to run
+  }, []); //dependancy telling it when to run
 
-  return scrolled;
+  return scrollPosition;
 };

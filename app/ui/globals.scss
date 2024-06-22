@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero-title {
+  text-shadow: 3px 3px 0px #a37957,
+  6px 6px 0px #0e3253;
+}
+

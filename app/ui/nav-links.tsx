@@ -10,14 +10,16 @@ const links = [
 
 export default function NavLinks() {
   return (
-    <div className="flex space-x-4">
+    <>
       {links.map((link) => {
         return (
-          <Link key={link.name} href={link.href}>
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
+          <div className="w-48">
+            <Link key={link.name} href={link.href}>
+              <p className="hidden md:block">{link.name}</p>
+            </Link>
+          </div>
         );
       })}
-    </div>
+    </>
   );
 }
