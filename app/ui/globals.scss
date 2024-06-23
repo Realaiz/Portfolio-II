@@ -7,3 +7,17 @@
   6px 6px 0px #0e3253;
 }
 
+.perspective {
+  perspective: 10px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.background-parallax {
+  transform: translateZ(-10px) scale(2);
+}
+.foreground-parallax {
+  transform: translateZ(-5px) scale(1.5);
+}
