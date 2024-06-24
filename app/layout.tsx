@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import TopNav from "./ui/topnav";
 import './ui/globals.scss'; //the globals.scss file contains the tailwind utility classes that enable tailwind keywords to work
+import BottomNav from "./ui/bottomnav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`{inter.className} antialiased`}>
-        <TopNav/>
+      <body className={`${inter.className} antialiased`}>
+        <TopNav />
         {children}
+        <BottomNav />
       </body>
     </html>
   );

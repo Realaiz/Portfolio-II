@@ -1,24 +1,77 @@
-import Image from 'next/image';
-import heroImage from '../public/hero-desktop.jpg'
-import lionBanner from '../public/lion-foreground.png'
-import Title from './ui/title';
+import Image from "next/image";
+import heroImage from "@/public/bg-truesize.png"
+import lionSeparator from "@/public/lion-foreground2.png"
+import Title from "./ui/title";
+import BondUniversityLogo from "@/public/bondlogo.svg";
+import ProfileImage from "@/public/profilepic.jpeg";
+import Algothon from "@/public/algothon.png";
+import dashboard from "@/public/dashboard-app.webp"
 
-        {/*<div className="relative h-32 bg-darknavy blur-2xl z-10"/>*/}
 export default function Home() {
   return (
-    <main className="h-screen overflow-y-auto overflow-x-hidden perspective"> 
-      {/*Top hero section - mainly just cosmetic details and a splash  divwrapper above and header below*/}
-      <section className="relative h-full display-flex justify-center items-center preserve-3d -z-10">
-        <Image src={heroImage} alt="Hero image of blacksmith at a forge with forest scenery" className="absolute h-full w-full object-cover -z-1 background-parallax"/>
-        <Image src={lionBanner} alt="static image of a pride of lions" className="absolute h-full w-full object-cover -z-1 foreground-parallax mt-44" />
-        <Title />
+    <main id="homepage">
+      <section id="hero-module" className="relative w-full h-screen">
+        <div className="absolute inset-0">
+          <Image src={heroImage} layout="fill" alt="hero background image of savannah with river" className="object-cover"/>
+        </div>
+        <div className="absolute inset-0 z-10">
+          <Image src={lionSeparator} layout="fill" alt="lion separator" className="object-cover" />
+        </div>
+        <div className="relative z-10 flex justify-center h-full ">
+          <Title />
+        </div>
       </section>
 
-      {/* Section section - intro & interests & mayb some projs */}
-      <section className="text">
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente itaque deserunt inventore eos molestiae, omnis quas beatae sint reprehenderit nihil, distinctio corrupti pariatur sequi. Saepe libero cumque quis repellat possimus, similique sit a voluptatem debitis? Quasi quod facilis excepturi voluptatem iusto alias autem quo commodi eius explicabo, quos hic ut sapiente sit harum, inventore pariatur dignissimos minus facere, aliquam incidunt itaque veritatis. Sed sunt excepturi sapiente quasi iure eos esse animi ipsa itaque ipsum eligendi dolores distinctio magni architecto nam porro ea culpa, ab nostrum placeat facere, cupiditate similique illum? Quia itaque reprehenderit laudantium et maiores repudiandae ab ex, voluptatum non inventore iste illum minima sint nostrum cum unde sed quo distinctio eius optio? Corporis praesentium ipsa repellendus reiciendis totam, tempora eligendi illo eos, corrupti similique deserunt perspiciatis nesciunt excepturi provident. Fugit molestiae facilis at nesciunt voluptates totam, in vero, veniam, minus debitis modi consequuntur neque hic vel aperiam doloribus esse amet nostrum commodi cupiditate labore. Quia omnis a voluptas voluptate deleniti labore mollitia veniam eaque. Cupiditate labore placeat similique quam dolor sed, quis deserunt quidem sapiente adipisci corrupti, optio porro commodi at atque non omnis obcaecati esse perspiciatis nostrum nobis facere sunt nam quos. Ad ipsam quia architecto tenetur, incidunt minus maxime exercitationem, quisquam fugit soluta facere eaque atque perferendis temporibus dolorum totam enim accusantium neque veniam dignissimos magni explicabo commodi! Fugit accusantium non mollitia placeat quam eaque rerum porro cumque sequi eos explicabo esse libero maxime alias doloribus exercitationem quas ab, quod animi fuga. Cum amet mollitia tempore. Doloremque saepe possimus veritatis voluptates, ab autem labore similique libero expedita porro quis rerum repellendus, quod quam quaerat tempore pariatur sequi unde. Debitis atque quisquam modi. Optio, aspernatur quidem, sit possimus pariatur consequatur nulla facilis laudantium, tempora natus asperiores non voluptate in tenetur temporibus nisi beatae odio! Illo officia eum earum? Itaque iusto voluptatibus sit ex incidunt, ea ratione, fugit id aliquam adipisci repellendus facilis laudantium. Sint, expedita ipsa! Sequi, provident blanditiis repudiandae laudantium dolorem ipsa odio numquam pariatur esse labore facilis doloribus sit aliquam earum. Iste quas beatae repellat dolore quae ullam porro laudantium quo nam aliquid consequuntur ea amet harum, cupiditate debitis nisi, eaque, id aut suscipit! Nisi!</h1>
+      <section id="about-me" className="flex flex-col items-center bg-darknavy p-12 text-center">
+        <div className="bg-cream rounded p-8">
+          <p className="text-lg font-semibold mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, rem. </p>
+          <p className="text-lg font-semibold mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, rem. </p>
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+            <Image src={BondUniversityLogo} width={100} height={50} alt="Bond University logo" />
+            <Image src={ProfileImage} width={150} height={150} className="rounded-lg" alt="Profile picture of me" />
+          </div>
+        </div>
       </section>
 
+      <section id="showcase" className="bg-cream">
+
+        <div className="py-12 px-72">
+          <div className="flex justify-between gap-x-16">
+            <div className="flex flex-col justify-center items-center">
+              <h1 className="font-semibold text-xl ">Susquehanna x UNSW Algothon</h1>
+              <p className="">Building a sophisticated trading algorithm designed to maximize profits in SIG's simulated trading environment.</p>
+            </div>
+            <div className="flex-shrink-0">
+              <Image src={Algothon} width={475} height={250} className="rounded-lg" alt="Profile picture of me" />
+            </div>
+          </div>
+        </div>
+
+        <div className="py-12 px-72">
+          <div className="flex justify-between gap-x-16">
+            <div className="flex-shrink-0">
+              <Image src={dashboard} width={475} height={250} className="rounded-lg" alt="Profile picture of me" />
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <h1 className="font-semibold text-xl ">Nextjs Full-Stack Invoice Dashboard</h1>
+              <p className="">Built a dashboard with sql integration, features include authentication & authorizaiton.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="py-12 px-72">
+          <div className="flex justify-between gap-x-16">
+            <div className="flex flex-col justify-center items-center">
+              <h1 className="font-semibold text-xl ">Susquehanna x UNSW Algothon</h1>
+              <p className="">Building a sophisticated trading algorithm designed to maximize profits in SIG's simulated trading environment.</p>
+            </div>
+            <div className="flex-shrink-0">
+              <Image src={Algothon} width={475} height={250} className="rounded-lg" alt="Profile picture of me" />
+            </div>
+          </div>
+        </div>
+        
+      </section>
     </main>
   );
 }

@@ -16,6 +16,8 @@ const config: Config = {
       colors: {
         "darknavy": "#091c32",
         "lightblue": "#d1e3f9",
+        "riverblue": "#204d70",
+        "cream": "#f8e7d4",
       },
       backdropBlur: {
         "4xl": "1px",
