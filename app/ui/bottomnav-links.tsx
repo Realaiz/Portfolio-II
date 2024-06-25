@@ -7,7 +7,7 @@ import Image from 'next/image';
 const links = [
   {name: 'linkedin', href: "https://www.linkedin.com/in/leo-sharif-1a6866193/", icon: linkedinIcon},
   {name: 'github', href: "https://github.com/Realaiz", icon: githubIcon},
-  {name: 'resume', href: "/resume", icon: resumeIcon},  
+  {name: 'resume', href: "/Resume.pdf", icon: resumeIcon},  
 ];
 
 export default function BottomNavLinks() {

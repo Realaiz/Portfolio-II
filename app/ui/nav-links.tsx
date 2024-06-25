@@ -1,7 +1,7 @@
 import Link from 'next/link';
 //import { usePathname } from 'next/navigation';
 const links = [
-  {name: "Resume", href: "/resume"},
+  {name: "Resume", href: "/Resume.pdf"},
   {name: "Projects", href: "/projects"},
 ];
 
