@@ -6,15 +6,14 @@ export default function useScrollHandler() {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
-    const element = document.querySelector("main")
 
     const handleScroll = () => {
-      setScrollPosition(element.scrollTop);
+      setScrollPosition(window.scrollY);
     };
 
-    element.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      element.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []); //dependancy telling it when to run
 
