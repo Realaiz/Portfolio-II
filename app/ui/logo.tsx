@@ -3,63 +3,114 @@
 import React, { useEffect, useRef } from 'react';
 import p5 from 'p5';
 
+interface SpaceObject {
+  col?: [number, number, number];
+  hue?: number;
+  len: number;
+  angle: number;
+  radius: number;
+  speed: number;
+  target?: SpaceObject;
+  isPlanet?: boolean;
+  x?: number;
+  y?: number;
+}
+
 const LogoAnimation: React.FC = () => {
   const sketchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const sketch = (p: p5) => {
       let numArcs = 2000;
+      let arcs: SpaceObject[] = [];
+      let planets: SpaceObject[] = [];
+      let numCircles: number;
+      let radius: number;
+      let arcSize: number;
+      let center: SpaceObject;
+      let baseHue: number;
+      let hueRange: number;
 
-      const spaceObject = ({ col, hue, len, angle, radius, speed, target, isPlanet = false }: SpaceObject): SpaceObject => ({
-        col, hue, len, angle, radius, speed, target, isPlanet
+      const colorMap = (amt: number, hueShift = 0): [number, number, number] => [
+        (baseHue + amt * hueRange + hueShift) % 1,
+        amt,
+        1 - amt
+      ];
+
+      const spaceObject = ({
+        col,
+        hue,
+        len,
+        angle,
+        radius,
+        speed,
+        target,
+        isPlanet = false
+      }: SpaceObject): SpaceObject => ({
+        col,
+        hue,
+        len,
+        angle,
+        radius,
+        speed,
+        target,
+        isPlanet
       });
 
       const rInt = (b: number, a = 0) => Math.floor(p.random(Math.min(a, b), Math.max(a, b)));
 
       const init = () => {
-        window.arcs = [];
-        window.planets = [];
+        arcs = [];
+        planets = [];
 
-        window.numCircles = rInt(70, 120);
-        window.radius = Math.min(p.width, p.height) * 0.45;
-        window.arcSize = window.radius / window.numCircles;
-        window.center = { x: 0, y: 0, radius: window.radius, len: window.radius / 2 } as SpaceObject;
+        numCircles = rInt(70, 120);
+        radius = Math.min(p.width, p.height) * 0.45;
+        arcSize = radius / numCircles;
+        center = { x: 0, y: 0, radius: radius, len: radius / 2, angle: 0, speed: 0};
 
-        window.baseHue = p.random();
-        window.hueRange = p.random(0.2, 0.7) * (p.random() < 0.5 ? -1 : 1);
-        window.colorMap = (amt: number, hueShift = 0) => [(window.baseHue + amt * window.hueRange + hueShift) % 1, amt, 1 - amt];
+        baseHue = p.random();
+        hueRange = p.random(0.2, 0.7) * (p.random() < 0.5 ? -1 : 1);
 
         let variance = p.random(0.05, 0.4);
 
         for (let i = 0; i < numArcs; i++) {
-          let radius = rInt(window.numCircles);
-          let amt = radius / window.numCircles + p.random(-variance, variance);
+          let radius = rInt(numCircles);
+          let amt = radius / numCircles + p.random(-variance, variance);
           amt = p.constrain(amt, 0, 1);
 
-          window.arcs.push(spaceObject({
-            col: window.colorMap(amt),
-            len: p.random() < 0.2 ? 1 / (p.TAU * radius) : p.random(p.HALF_PI),
-            angle: p.random(p.TAU),
-            radius: radius * window.arcSize,
-            speed: p.random(0, 0.3) * (p.random() < 0.5 ? 1 : -1) * 0.02,
-          }));
+          arcs.push(
+            spaceObject({
+              col: colorMap(amt),
+              len: p.random() < 0.2 ? 1 / (p.TAU * radius) : p.random(p.HALF_PI),
+              angle: p.random(p.TAU),
+              radius: radius * arcSize,
+              speed: p.random(0, 0.3) * (p.random() < 0.5 ? 1 : -1) * 0.02
+            })
+          );
         }
 
-        window.arcs = window.arcs.sort((a, b) => b.len - a.len);
+        arcs = arcs.sort((a, b) => b.len - a.len);
 
         let numPlanets = rInt(2, 7);
         for (let i = 0; i < numPlanets; i++) {
-          let targetCenter = (window.planets.length > 0) && (p.random() < 0.5);
-          let target = targetCenter ? window.planets[rInt(0, window.planets.length)] : window.center;
+          let targetCenter = planets.length > 0 && p.random() < 0.5;
+          let target = targetCenter ? planets[rInt(0, planets.length)] : center;
           let len = p.random(0.5, 0.7) * target.len;
 
-          window.planets.push(spaceObject({
-            hue: p.random(-0.15, 0.15), len,
-            angle: p.random(p.TAU),
-            radius: targetCenter ? p.random(target.len / 4) + (len + target.len) / 2 : p.random(window.radius / numPlanets) + window.radius * ((i / numPlanets) * 0.7 + 0.3),
-            speed: p.random(0.2, 0.5) * 0.005,
-            target, isPlanet: true,
-          }));
+          planets.push(
+            spaceObject({
+              hue: p.random(-0.15, 0.15),
+              len,
+              angle: p.random(p.TAU),
+              radius: targetCenter
+                ? p.random(target.len / 4) + (len + target.len) / 2
+                : p.random(radius / numPlanets) +
+                  radius * ((i / numPlanets) * 0.7 + 0.3),
+              speed: p.random(0.2, 0.5) * 0.005,
+              target,
+              isPlanet: true
+            })
+          );
         }
       };
 
@@ -76,43 +127,48 @@ const LogoAnimation: React.FC = () => {
         p.translate(p.width / 2, p.height / 2);
 
         p.noStroke();
-        for (let i = window.numCircles; i >= 0; i--) {
-          p.fill(window.colorMap((i / window.numCircles) * 0.9));
-          p.ellipse(0, 0, i * window.arcSize * 2);
+        for (let i = numCircles; i >= 0; i--) {
+          p.fill(colorMap((i / numCircles) * 0.9));
+          p.ellipse(0, 0, i * arcSize * 2);
         }
 
         p.noFill();
-        p.strokeWeight(window.arcSize);
+        p.strokeWeight(arcSize);
 
-        for (let o of window.arcs) {
+        for (let o of arcs) {
           o.angle += o.speed;
-          p.stroke(...o.col, 0.5);
+          p.stroke(...(o.col ?? [0, 0, 0]), 0.5);
           p.arc(0, 0, o.radius * 2, o.radius * 2, o.angle, o.angle + o.len);
         }
 
-        for (let o of window.planets) {
+        for (let o of planets) {
           o.angle += o.speed;
-          o.x = Math.cos(o.angle) * o.radius + o.target.x;
-          o.y = Math.sin(o.angle) * o.radius + o.target.y;
-
+          if (o.target && o.target.x !== undefined && o.target.y !== undefined) {
+            o.x = Math.cos(o.angle) * o.radius + o.target.x;
+            o.y = Math.sin(o.angle) * o.radius + o.target.y;
+          }
           p.push();
-          p.translate(o.x, o.y);
-          let a = Math.atan2(o.y, o.x);
+          p.translate(o.x ?? 0, o.y ?? 0);
+          let a = Math.atan2(o.y ?? 0, o.x ?? 0);
           p.rotate(a);
           p.noStroke();
-          let percent = (1 - (Math.hypot(o.x, o.y) / window.radius) * 0.4);
+          let percent = (1 - (Math.hypot(o.x ?? 0, o.y ?? 0) / radius) * 0.4);
 
           for (let i = o.len; i >= 0; i -= 2) {
             let amt = i / o.len;
-            let amt2 = (1 - amt ** 5) * (percent) + (1 - percent);
-            p.fill(window.colorMap(amt2, o.hue));
-            p.ellipse(-o.len * amt / 2 + o.len / 2 - 1, 0, o.len * amt, Math.sin(amt * p.HALF_PI) * o.len);
+            let amt2 = (1 - amt ** 5) * percent + (1 - percent);
+            p.fill(colorMap(amt2, o.hue));
+            p.ellipse(
+              (-o.len * amt) / 2 + o.len / 2 - 1,
+              0,
+              o.len * amt,
+              Math.sin(amt * p.HALF_PI) * o.len
+            );
           }
           p.pop();
         }
         p.pop();
       };
-
 
       p.windowResized = () => {
         p.resizeCanvas(140, 140);
