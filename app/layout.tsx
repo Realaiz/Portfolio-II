@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import TopNav from "./ui/topnav";
 import './ui/globals.scss'; //the globals.scss file contains the tailwind utility classes that enable tailwind keywords to work
 import BottomNav from "./ui/bottomnav";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,8 @@ export default function RootLayout({
         <TopNav />
         {children}
         <BottomNav />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
