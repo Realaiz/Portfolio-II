@@ -17,9 +17,9 @@ export const portfolio = {
   disciplines: ['Math', 'Finance', 'Computer science'],
   tagline: '1v1 me poker only',
   introduction:
-    'trying to figure out if I hate or love math'
-    +'\nown: Bachelor of Actuarial Science, Australian Financial Markets Association Membership'
-    +'\nnot owned yet: Master of Mathematics',
+    'trying to figure out if I hate or love math' +
+    '\nown: Bachelor of Actuarial Science, Australian Financial Markets Association Membership' +
+    '\nnot owned yet: Master of Mathematics',
   resume: '/Resume.pdf',
   education: {
     qualification: 'Bachelor of Actuarial Science',
@@ -99,13 +99,15 @@ export const projects = [
 ];
 
 export const interests = [
-  { name: 'Food', 
-    detail: 'Anyone ever eat while watching kitchen nightmares?', 
-    suit: 'diamonds' 
+  {
+    name: 'Food',
+    detail: 'Anyone ever eat while watching kitchen nightmares?',
+    suit: 'diamonds',
   },
-  { name: 'Guitar', 
-    detail: 'siri play stairway to heaven by led zepplin', 
-    suit: 'spades' 
+  {
+    name: 'Guitar',
+    detail: 'siri play stairway to heaven by led zepplin',
+    suit: 'spades',
   },
   {
     name: 'Acting',

@@ -16,10 +16,8 @@ export default function About() {
     <SectionPage current="/about" title="Hey, I’m Leo.">
       <div className="about-grid">
         <div className="about-copy">
-          <p style={{whiteSpace: 'pre-line'}}>{portfolio.introduction}</p>
-          <p>
-            I’m a foodie, and I like guitar, acting and tennis.
-          </p>
+          <p style={{ whiteSpace: 'pre-line' }}>{portfolio.introduction}</p>
+          <p>I’m a foodie, and I like guitar, acting and tennis.</p>
           <Link className="text-link" href="/off-duty">
             Why did i make a page about hobbies lol? ↗
           </Link>

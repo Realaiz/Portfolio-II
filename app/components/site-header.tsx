@@ -8,7 +8,7 @@ export default function SiteHeader() {
         LS.
       </Link>
       <span className="header-note eyebrow">
-        It's only gambling if you're losing.
+        It&apos;s only gambling if you&apos;re losing.
       </span>
       <div className="header-actions">
         <Link className="text-link resume-shortcut" href="/resume">
