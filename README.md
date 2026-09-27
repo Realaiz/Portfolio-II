@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Leo Sharif — The Opening Hand
 
-## Getting Started
+Personal portfolio built with Next.js App Router, React, TypeScript and Tailwind. Cream/green patterned cards in light mode; blue foil cards on an ink-blue background in dark mode.
 
-First, run the development server:
+## Run locally
 
-```bash
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. Use `npm run build` to check the production build, followed by `npm start` to preview it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where to make changes
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| Change | File |
+| --- | --- |
+| Name, bio, social links, projects and interests | `app/content/portfolio.ts` |
+| Light/dark palettes, fonts, spacing, card patterns | `app/globals.css` (design settings at the top) |
+| Card angles, order and flip transition | `app/components/card-hand.tsx` |
+| Homepage text and layout | `app/page.tsx` |
+| Résumé content | `app/resume/page.tsx` |
+| Downloadable résumé | Replace `public/Resume.pdf` (keep its filename) |
+| Project illustrations and graduation photo | `public/` |
+| Page titles and search descriptions | `app/layout.tsx` and each page’s `metadata` |
 
-## Learn More
+The card destinations are real pages: `/resume`, `/projects`, `/about`, `/off-duty`. Links work without JavaScript, support new tabs, and respect reduced-motion preferences. The existing `/projects` and `/Resume.pdf` URLs are retained.
 
-To learn more about Next.js, take a look at the following resources:
+The theme follows the device on first visit and remembers a manual Light/Dark choice locally. It is applied before paint and persists between pages. No database, CMS, remote fonts or animation library is required by this design.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Preview and publish on Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Keep the existing GitHub repository, Vercel project and custom-domain connection. Push a feature branch for a preview. Review the preview on phone and desktop; merge into the Vercel production branch when ready to publish. No DNS change is needed when using the same Vercel project.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Vercel Analytics and Speed Insights from the original site remain installed. Legacy illustration assets are retained so they can be reused. The résumé PDF is the existing document; update it before publication if needed.
