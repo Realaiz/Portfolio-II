@@ -13,16 +13,16 @@ Open http://localhost:3000. Use `npm run build` to check the production build, f
 
 ## Where to make changes
 
-| Change | File |
-| --- | --- |
-| Name, bio, social links, projects and interests | `app/content/portfolio.ts` |
-| Light/dark palettes, fonts, spacing, card patterns | `app/globals.css` (design settings at the top) |
-| Card angles, order and flip transition | `app/components/card-hand.tsx` |
-| Homepage text and layout | `app/page.tsx` |
-| Résumé content | `app/resume/page.tsx` |
-| Downloadable résumé | Replace `public/Resume.pdf` (keep its filename) |
-| Project illustrations and graduation photo | `public/` |
-| Page titles and search descriptions | `app/layout.tsx` and each page’s `metadata` |
+| Change                                             | File                                            |
+| -------------------------------------------------- | ----------------------------------------------- |
+| Name, bio, social links, projects and interests    | `app/content/portfolio.ts`                      |
+| Light/dark palettes, fonts, spacing, card patterns | `app/globals.css` (design settings at the top)  |
+| Card angles, order and flip transition             | `app/components/card-hand.tsx`                  |
+| Homepage text and layout                           | `app/page.tsx`                                  |
+| Résumé content                                     | `app/resume/page.tsx`                           |
+| Downloadable résumé                                | Replace `public/Resume.pdf` (keep its filename) |
+| Project illustrations and graduation photo         | `public/`                                       |
+| Page titles and search descriptions                | `app/layout.tsx` and each page’s `metadata`     |
 
 The card destinations are real pages: `/resume`, `/projects`, `/about`, `/off-duty`. Links work without JavaScript, support new tabs, and respect reduced-motion preferences. The existing `/projects` and `/Resume.pdf` URLs are retained.
 
@@ -33,3 +33,19 @@ The theme follows the device on first visit and remembers a manual Light/Dark ch
 Keep the existing GitHub repository, Vercel project and custom-domain connection. Push a feature branch for a preview. Review the preview on phone and desktop; merge into the Vercel production branch when ready to publish. No DNS change is needed when using the same Vercel project.
 
 Vercel Analytics and Speed Insights from the original site remain installed. Legacy illustration assets are retained so they can be reused. The résumé PDF is the existing document; update it before publication if needed.
+
+## Formatting and linting
+
+- `npm run format` formats source, styles and configuration using Prettier.
+- `npm run format:check` checks formatting without changing files.
+- `npm run lint` checks ESLint rules and fails on warnings.
+- `npm run lint:fix` applies ESLint's automatic fixes.
+- `npm run typecheck` checks TypeScript.
+
+Prettier uses two-space indentation, single quotes and an 80-character target.
+ESLint handles code-quality rules; `eslint-config-prettier` disables conflicting
+formatting rules. Generated files, dependencies, public assets and the lockfile
+are excluded from formatting.
+
+Cards and interests use typed suit names (`spades`, `hearts`, `clubs`,
+`diamonds`). `app/content/suits.ts` maps those names to Unicode display symbols.
