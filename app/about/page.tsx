@@ -21,7 +21,7 @@ export default function About() {
             I’m a foodie, and I like guitar, acting and tennis.
           </p>
           <Link className="text-link" href="/off-duty">
-            Meet the off-duty side ↗
+            Why did i make a page about hobbies lol? ↗
           </Link>
         </div>
         <Image

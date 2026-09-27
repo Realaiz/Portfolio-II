@@ -12,7 +12,7 @@ export default function Home() {
         <p className="tagline">{portfolio.tagline}</p>
       </div>
       <CardHand />
-      <p className="hand-hint">Pick a card. See what’s underneath.</p>
+      <p className="hand-hint">Pick a card :)</p>
     </main>
   );
 }

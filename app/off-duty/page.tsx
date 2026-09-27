@@ -12,8 +12,8 @@ export default function OffDuty() {
   return (
     <SectionPage
       current="/off-duty"
-      title="More than the numbers."
-      intro="A few things I make time for away from the screen."
+      title="Some stuff i like:"
+      intro="IDK if sh*t-posting counts as a hobby"
     >
       <div className="interests-list">
         {interests.map((interest) => (

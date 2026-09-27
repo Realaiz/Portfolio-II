@@ -40,28 +40,28 @@ export const cards = [
     label: 'Résumé',
     suit: 'spades',
     rank: 'A',
-    caption: 'The background',
+    caption: '',
   },
   {
     href: '/projects',
     label: 'Projects',
     suit: 'diamonds',
     rank: 'K',
-    caption: 'The work',
+    caption: 'nerd shi',
   },
   {
     href: '/about',
     label: 'About',
     suit: 'clubs',
     rank: 'Q',
-    caption: 'The person',
+    caption: 'this a meeeeeee',
   },
   {
     href: '/off-duty',
     label: 'Off duty',
     suit: 'hearts',
     rank: 'J',
-    caption: 'Beyond the work',
+    caption: 'yes i have hobbies',
   },
 ] as const satisfies readonly PortfolioCard[];
 
@@ -99,8 +99,14 @@ export const projects = [
 ];
 
 export const interests = [
-  { name: 'Food', detail: 'Always an enjoyer of good food.', suit: 'diamonds' },
-  { name: 'Guitar', detail: 'A little time with six strings.', suit: 'spades' },
+  { name: 'Food', 
+    detail: 'Anyone ever eat while watching kitchen nightmares?', 
+    suit: 'diamonds' 
+  },
+  { name: 'Guitar', 
+    detail: 'siri play stairway to heaven by led zepplin', 
+    suit: 'spades' 
+  },
   {
     name: 'Acting',
     detail: 'Stepping into another perspective.',
@@ -108,7 +114,7 @@ export const interests = [
   },
   {
     name: 'Tennis',
-    detail: 'Away from the screen and onto the court.',
+    detail: 'cold take: kyrgios would be the GOAT if he liked tennis',
     suit: 'hearts',
   },
 ] as const satisfies readonly Interest[];
